@@ -4,16 +4,16 @@
 #
 Name     : perl-Proc-Wait3
 Version  : 0.05
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libproc-wait3-perl/libproc-wait3-perl_0.05-1.debian.tar.xz
 Summary  : Perl extension for wait3 system call
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Proc-Wait3-lib
-Requires: perl-Proc-Wait3-license
-Requires: perl-Proc-Wait3-man
+Requires: perl-Proc-Wait3-lib = %{version}-%{release}
+Requires: perl-Proc-Wait3-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 
 %description
 Proc::Wait3 version 0.05
@@ -22,10 +22,20 @@ Proc::Wait3 is a simple perl wrapper around the wait3(1) system call.
 It reaps dead children like wait(), but also reports on the resource
 usage of the child.
 
+%package dev
+Summary: dev components for the perl-Proc-Wait3 package.
+Group: Development
+Requires: perl-Proc-Wait3-lib = %{version}-%{release}
+Provides: perl-Proc-Wait3-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Proc-Wait3 package.
+
+
 %package lib
 Summary: lib components for the perl-Proc-Wait3 package.
 Group: Libraries
-Requires: perl-Proc-Wait3-license
+Requires: perl-Proc-Wait3-license = %{version}-%{release}
 
 %description lib
 lib components for the perl-Proc-Wait3 package.
@@ -39,19 +49,11 @@ Group: Default
 license components for the perl-Proc-Wait3 package.
 
 
-%package man
-Summary: man components for the perl-Proc-Wait3 package.
-Group: Default
-
-%description man
-man components for the perl-Proc-Wait3 package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Proc-Wait3-0.05
-mkdir -p %{_topdir}/BUILD/Proc-Wait3-0.05/deblicense/
+cd ..
+%setup -q -T -D -n Proc-Wait3-0.05 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Proc-Wait3-0.05/deblicense/
 
 %build
@@ -76,12 +78,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Proc-Wait3
-cp LICENSE %{buildroot}/usr/share/doc/perl-Proc-Wait3/LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Proc-Wait3
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Proc-Wait3/LICENSE
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -90,16 +92,16 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Proc/Wait3.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Proc/Wait3.pm
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Proc::Wait3.3
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Proc-Wait3/LICENSE
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man3/Proc::Wait3.3
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Proc-Wait3/LICENSE
