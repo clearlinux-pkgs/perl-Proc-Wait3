@@ -92,7 +92,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Proc/Wait3.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/Proc/Wait3.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -100,7 +100,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
 
 %files license
 %defattr(0644,root,root,0755)
