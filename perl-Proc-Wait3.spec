@@ -4,7 +4,7 @@
 #
 Name     : perl-Proc-Wait3
 Version  : 0.05
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libproc-wait3-perl/libproc-wait3-perl_0.05-1.debian.tar.xz
@@ -81,6 +81,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Proc-Wait3
 cp %{_builddir}/Proc-Wait3-0.05/LICENSE %{buildroot}/usr/share/package-licenses/perl-Proc-Wait3/2753674007440763253a8aa3a876c81ac7f6e52c
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Proc-Wait3/036d6a142aa700c9543dbdb6d5afb2cfe52ec4ad
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -100,9 +101,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Proc-Wait3/036d6a142aa700c9543dbdb6d5afb2cfe52ec4ad
 /usr/share/package-licenses/perl-Proc-Wait3/2753674007440763253a8aa3a876c81ac7f6e52c
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Proc/Wait3.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Proc/Wait3.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
