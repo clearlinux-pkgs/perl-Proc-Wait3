@@ -4,7 +4,7 @@
 #
 Name     : perl-Proc-Wait3
 Version  : 0.05
-Release  : 20
+Release  : 21
 URL      : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libproc-wait3-perl/libproc-wait3-perl_0.05-1.debian.tar.xz
@@ -106,5 +106,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/Proc/Wait3.pm
-/usr/lib/perl5/vendor_perl/5.34.0/x86_64-linux-thread-multi/auto/Proc/Wait3/Wait3.so
+/usr/lib/perl5/*
