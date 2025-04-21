@@ -7,7 +7,7 @@
 #
 Name     : perl-Proc-Wait3
 Version  : 0.05
-Release  : 28
+Release  : 29
 URL      : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/C/CT/CTILMES/Proc-Wait3-0.05.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libp/libproc-wait3-perl/libproc-wait3-perl_0.05-1.debian.tar.xz
